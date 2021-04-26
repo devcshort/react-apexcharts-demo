@@ -10,6 +10,7 @@ import PolarArea from 'common/components/PolarArea/PolarArea';
 import Line from 'common/components/Line/Line';
 import Area from 'common/components/Area/Area';
 import Bar from 'common/components/Bar/Bar';
+import Scatter from 'common/components/Scatter/Scatter';
 
 export default function Home() {
   const [chartType, setChartType] = useState<ChartTypes>('pie');
@@ -43,7 +44,6 @@ export default function Home() {
               <MenuItem value="line">Line</MenuItem>
               <MenuItem value="area">Area</MenuItem>
               <MenuItem value="bar">Bar</MenuItem>
-              <MenuItem value="histogram">Histogram</MenuItem>
               <MenuItem value="pie">Pie</MenuItem>
               <MenuItem value="donut">Donut</MenuItem>
               <MenuItem value="radialBar">Radial Bar</MenuItem>
@@ -67,6 +67,7 @@ export default function Home() {
         {chartType === 'line' && <Line />}
         {chartType === 'area' && <Area />}
         {chartType === 'bar' && <Bar />}
+        {chartType === 'scatter' && <Scatter />}
       </div>
     </div>
   );

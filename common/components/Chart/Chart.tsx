@@ -4,7 +4,6 @@ export type ChartTypes =
   | 'line'
   | 'area'
   | 'bar'
-  | 'histogram'
   | 'pie'
   | 'donut'
   | 'radialBar'
