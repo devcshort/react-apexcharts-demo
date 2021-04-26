@@ -132,6 +132,14 @@ export default function Home() {
                 },
               },
               legend: {
+                formatter(name, opts) {
+                  console.log({ name, opts });
+                  return `${name} - ${opts.w.globals.seriesPercent[
+                    opts.seriesIndex
+                  ]
+                    .map((el) => el.toFixed(1) + '%')
+                    .join(',')}`;
+                },
                 labels: {
                   colors: '#fff',
                 },
