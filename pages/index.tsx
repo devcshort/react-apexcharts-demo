@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Apex Charts Demo</title>
+        <title>React Apex Charts Demo</title>
       </Head>
 
       <div
@@ -126,6 +126,18 @@ export default function Home() {
               chart: {
                 id: 'apexchart-demo',
                 type: chartType,
+                stacked: false,
+                toolbar: {
+                  show: false,
+                },
+              },
+              legend: {
+                labels: {
+                  colors: '#fff',
+                },
+              },
+              theme: {
+                palette: 'palette1',
               },
               labels: labels,
             }}

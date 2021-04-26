@@ -13,14 +13,14 @@
     "apex charts",
     "chart demo"
   ],
-  "author": "Van Doren Sales",
-  "homepage": "https://www.vandorensales.com",
+  "author": "Chris Short",
+  "homepage": "https://www.chrisrshort.dev",
   "bugs": {
-    "url": "https://github.com/Van-Doren-Sales/apex-charts-demo/issues"
+    "url": "https://github.com/devcshort/react-apexcharts-demo/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Van-Doren-Sales/apex-charts-demo"
+    "url": "https://github.com/devcshort/react-apexcharts-demo"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
