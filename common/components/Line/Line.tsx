@@ -206,7 +206,6 @@ export default function Line() {
                   },
                 },
               },
-              labels: labels,
             }}
             width={width}
             height={height}

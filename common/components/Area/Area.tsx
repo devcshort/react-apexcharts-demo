@@ -206,7 +206,6 @@ export default function Area() {
                   },
                 },
               },
-              labels: labels,
             }}
             width={width}
             height={height}

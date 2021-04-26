@@ -13,6 +13,7 @@ import { Chart, CurveTypes } from '../Chart/Chart';
 
 export default function Bar() {
   const [curve, setCurve] = useState<CurveTypes>('straight');
+  const [isHorizontal, setIsHorizontal] = useState(false);
   const [isDashed, setIsDashed] = useState(false);
   const [dashWidth, setDashWidth] = useState(15);
   const [lineWidth, setLineWidth] = useState(8);
@@ -118,6 +119,18 @@ export default function Bar() {
           <FormControlLabel
             control={
               <Switch
+                checked={isHorizontal}
+                onChange={handleBoolean(setIsHorizontal)}
+                name="dashed"
+                color="primary"
+              />
+            }
+            label="Horizontal?"
+          />
+
+          <FormControlLabel
+            control={
+              <Switch
                 checked={isDashed}
                 onChange={handleBoolean(setIsDashed)}
                 name="dashed"
@@ -174,6 +187,11 @@ export default function Bar() {
               dataLabels: {
                 enabled: true,
               },
+              plotOptions: {
+                bar: {
+                  horizontal: isHorizontal,
+                },
+              },
               grid: {
                 row: {
                   colors: ['#f3f3f3', 'transparent'],
@@ -206,7 +224,6 @@ export default function Bar() {
                   },
                 },
               },
-              labels: labels,
             }}
             width={width}
             height={height}
