@@ -8,6 +8,7 @@ import Donut from 'common/components/Donut/Donut';
 import RadialBar from 'common/components/RadialBar/RadialBar';
 import PolarArea from 'common/components/PolarArea/PolarArea';
 import Line from 'common/components/Line/Line';
+import Area from 'common/components/Area/Area';
 
 export default function Home() {
   const [chartType, setChartType] = useState<ChartTypes>('pie');
@@ -63,6 +64,7 @@ export default function Home() {
         {chartType === 'radialBar' && <RadialBar />}
         {chartType === 'polarArea' && <PolarArea />}
         {chartType === 'line' && <Line />}
+        {chartType === 'area' && <Area />}
       </div>
     </div>
   );
