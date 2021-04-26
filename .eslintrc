@@ -1,0 +1,8 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": ["@vandorensales/eslint-config-vds-react"],
+  "rules": {
+    "indent": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}
