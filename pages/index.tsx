@@ -1,51 +1,20 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import {
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-} from '@material-ui/core';
+import { Select, MenuItem, FormControl, InputLabel } from '@material-ui/core';
 
-import { Chart, ChartTypes } from '../common/components/Chart/Chart';
+import { ChartTypes } from '../common/components/Chart/Chart';
+import Pie from '../common/components/Pie/Pie';
+import Donut from 'common/components/Donut/Donut';
+import RadialBar from 'common/components/RadialBar/RadialBar';
+import PolarArea from 'common/components/PolarArea/PolarArea';
+import Line from 'common/components/Line/Line';
 
 export default function Home() {
   const [chartType, setChartType] = useState<ChartTypes>('pie');
-  const [width, setWidth] = useState(420);
-  const [height, setHeight] = useState(420);
-  const [json, setJson] = useState({
-    cherries: 30,
-    apples: 40,
-    pears: 35,
-    strawberries: 50,
-  });
-
-  const labels = Object.keys(json);
-  const series = Object.values(json);
 
   function handleChange(setValue) {
     return function changeHandler(e) {
       setValue(e.target.value);
-    };
-  }
-
-  function handleNumberChange(setValue) {
-    return function changeHandler(e) {
-      const value = parseInt(e.target.value);
-
-      if (!isNaN(value)) {
-        setValue(e.target.value);
-      }
-    };
-  }
-
-  function handleJsonChange(setValue) {
-    return function changeHandler(e) {
-      try {
-        const newValue = JSON.parse(e.target.value);
-        setValue(newValue);
-      } catch (err) {}
     };
   }
 
@@ -58,9 +27,10 @@ export default function Home() {
       <div
         style={{
           display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <div style={{ flex: 1 }}>
+        <div>
           <FormControl>
             <InputLabel>Chart Type</InputLabel>
             <Select
@@ -86,74 +56,13 @@ export default function Home() {
               <MenuItem value="rangeBar">Range Bar</MenuItem>
             </Select>
           </FormControl>
-
-          <TextField
-            type="number"
-            onChange={handleNumberChange(setHeight)}
-            value={height}
-            label="Height (px)"
-            style={{ display: 'block', marginBottom: '8px' }}
-          />
-
-          <TextField
-            type="number"
-            onChange={handleNumberChange(setWidth)}
-            value={width}
-            label="Width (px)"
-            style={{ display: 'block' }}
-          />
-
-          <TextField
-            defaultValue={JSON.stringify(json, null, 4)}
-            onChange={handleJsonChange(setJson)}
-            rowsMax={50}
-            multiline
-            fullWidth
-          />
         </div>
 
-        <div
-          style={{
-            flex: 4,
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '48px',
-          }}
-        >
-          <Chart
-            type={chartType}
-            options={{
-              chart: {
-                id: 'apexchart-demo',
-                type: chartType,
-                stacked: false,
-                toolbar: {
-                  show: false,
-                },
-              },
-              legend: {
-                formatter(name, opts) {
-                  console.log({ name, opts });
-                  return `${name} - ${opts.w.globals.seriesPercent[
-                    opts.seriesIndex
-                  ]
-                    .map((el) => el.toFixed(1) + '%')
-                    .join(',')}`;
-                },
-                labels: {
-                  colors: '#fff',
-                },
-              },
-              theme: {
-                palette: 'palette1',
-              },
-              labels: labels,
-            }}
-            width={width}
-            height={height}
-            series={series}
-          />
-        </div>
+        {chartType === 'pie' && <Pie />}
+        {chartType === 'donut' && <Donut />}
+        {chartType === 'radialBar' && <RadialBar />}
+        {chartType === 'polarArea' && <PolarArea />}
+        {chartType === 'line' && <Line />}
       </div>
     </div>
   );

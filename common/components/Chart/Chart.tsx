@@ -18,6 +18,8 @@ export type ChartTypes =
   | 'polarArea'
   | 'rangeBar';
 
+export type CurveTypes = 'straight' | 'smooth' | 'stepline';
+
 export const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default Chart;
