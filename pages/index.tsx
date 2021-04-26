@@ -9,6 +9,7 @@ import RadialBar from 'common/components/RadialBar/RadialBar';
 import PolarArea from 'common/components/PolarArea/PolarArea';
 import Line from 'common/components/Line/Line';
 import Area from 'common/components/Area/Area';
+import Bar from 'common/components/Bar/Bar';
 
 export default function Home() {
   const [chartType, setChartType] = useState<ChartTypes>('pie');
@@ -65,6 +66,7 @@ export default function Home() {
         {chartType === 'polarArea' && <PolarArea />}
         {chartType === 'line' && <Line />}
         {chartType === 'area' && <Area />}
+        {chartType === 'bar' && <Bar />}
       </div>
     </div>
   );
