@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TextField } from '@material-ui/core';
 
 import { Chart } from '../Chart/Chart';
+import * as handlers from '../../utils/changeHandlers';
 
 export default function Scatter() {
   const [width, setWidth] = useState(600);
@@ -40,25 +41,6 @@ export default function Scatter() {
 
   const series = json.series;
 
-  function handleNumberChange(setValue) {
-    return function changeHandler(e) {
-      const value = parseInt(e.target.value);
-
-      if (!isNaN(value)) {
-        setValue(e.target.value);
-      }
-    };
-  }
-
-  function handleJsonChange(setValue) {
-    return function changeHandler(e) {
-      try {
-        const newValue = JSON.parse(e.target.value);
-        setValue(newValue);
-      } catch (err) {}
-    };
-  }
-
   return (
     <div>
       <div
@@ -69,23 +51,23 @@ export default function Scatter() {
         <div style={{ flex: 1 }}>
           <TextField
             type="number"
-            onChange={handleNumberChange(setHeight)}
-            value={height}
+            onBlur={handlers.handleNumberChange(setHeight)}
+            defaultValue={height}
             label="Height (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setWidth)}
-            value={width}
+            onBlur={handlers.handleNumberChange(setWidth)}
+            defaultValue={width}
             label="Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
 
           <TextField
             defaultValue={JSON.stringify(json, null, 4)}
-            onChange={handleJsonChange(setJson)}
+            onBlur={handlers.handleJsonChange(setJson)}
             rowsMax={50}
             multiline
             fullWidth

@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 
 import { Chart, CurveTypes } from '../Chart/Chart';
+import * as handlers from '../../utils/changeHandlers';
 
 export default function Line() {
   const [curve, setCurve] = useState<CurveTypes>('straight');
@@ -39,37 +40,6 @@ export default function Line() {
   const labels = json.categories;
   const series = json.series;
 
-  function handleNumberChange(setValue) {
-    return function changeHandler(e) {
-      const value = parseInt(e.target.value);
-
-      if (!isNaN(value)) {
-        setValue(e.target.value);
-      }
-    };
-  }
-
-  function handleChange(setValue) {
-    return function changeHandler(e) {
-      setValue(e.target.value);
-    };
-  }
-
-  function handleJsonChange(setValue) {
-    return function changeHandler(e) {
-      try {
-        const newValue = JSON.parse(e.target.value);
-        setValue(newValue);
-      } catch (err) {}
-    };
-  }
-
-  function handleBoolean(toggleValue) {
-    return function changeHandler(e) {
-      toggleValue((prev) => !prev);
-    };
-  }
-
   return (
     <div>
       <div
@@ -83,7 +53,7 @@ export default function Line() {
             <Select
               style={{ minWidth: 180, display: 'block', marginBottom: '8px' }}
               value={curve}
-              onChange={handleChange(setCurve)}
+              onChange={handlers.handleChange(setCurve)}
             >
               <MenuItem value="straight">Straight</MenuItem>
               <MenuItem value="smooth">Smooth</MenuItem>
@@ -93,24 +63,24 @@ export default function Line() {
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setLineWidth)}
-            value={lineWidth}
+            onBlur={handlers.handleNumberChange(setLineWidth)}
+            defaultValue={lineWidth}
             label="Line Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setHeight)}
-            value={height}
+            onBlur={handlers.handleNumberChange(setHeight)}
+            defaultValue={height}
             label="Height (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setWidth)}
-            value={width}
+            onBlur={handlers.handleNumberChange(setWidth)}
+            defaultValue={width}
             label="Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
@@ -119,7 +89,7 @@ export default function Line() {
             control={
               <Switch
                 checked={isDashed}
-                onChange={handleBoolean(setIsDashed)}
+                onChange={handlers.handleBoolean(setIsDashed)}
                 name="dashed"
                 color="primary"
               />
@@ -130,8 +100,8 @@ export default function Line() {
           {isDashed && (
             <TextField
               type="number"
-              onChange={handleNumberChange(setDashWidth)}
-              value={dashWidth}
+              onBlur={handlers.handleNumberChange(setDashWidth)}
+              defaultValue={dashWidth}
               label="Dash Width (px)"
               style={{ display: 'block', marginBottom: '8px' }}
             />
@@ -139,7 +109,7 @@ export default function Line() {
 
           <TextField
             defaultValue={JSON.stringify(json, null, 4)}
-            onChange={handleJsonChange(setJson)}
+            onBlur={handlers.handleJsonChange(setJson)}
             rowsMax={50}
             multiline
             fullWidth

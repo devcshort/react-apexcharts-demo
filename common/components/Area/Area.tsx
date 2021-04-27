@@ -9,6 +9,7 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 
+import * as handlers from '../../utils/changeHandlers';
 import { Chart, CurveTypes } from '../Chart/Chart';
 
 export default function Area() {
@@ -39,37 +40,6 @@ export default function Area() {
   const labels = json.categories;
   const series = json.series;
 
-  function handleNumberChange(setValue) {
-    return function changeHandler(e) {
-      const value = parseInt(e.target.value);
-
-      if (!isNaN(value)) {
-        setValue(e.target.value);
-      }
-    };
-  }
-
-  function handleChange(setValue) {
-    return function changeHandler(e) {
-      setValue(e.target.value);
-    };
-  }
-
-  function handleJsonChange(setValue) {
-    return function changeHandler(e) {
-      try {
-        const newValue = JSON.parse(e.target.value);
-        setValue(newValue);
-      } catch (err) {}
-    };
-  }
-
-  function handleBoolean(toggleValue) {
-    return function changeHandler(e) {
-      toggleValue((prev) => !prev);
-    };
-  }
-
   return (
     <div>
       <div
@@ -83,7 +53,7 @@ export default function Area() {
             <Select
               style={{ minWidth: 180, display: 'block', marginBottom: '8px' }}
               value={curve}
-              onChange={handleChange(setCurve)}
+              onChange={handlers.handleChange(setCurve)}
             >
               <MenuItem value="straight">Straight</MenuItem>
               <MenuItem value="smooth">Smooth</MenuItem>
@@ -93,7 +63,7 @@ export default function Area() {
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setLineWidth)}
+            onBlur={handlers.handleNumberChange(setLineWidth)}
             value={lineWidth}
             label="Line Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
@@ -101,7 +71,7 @@ export default function Area() {
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setHeight)}
+            onBlur={handlers.handleNumberChange(setHeight)}
             value={height}
             label="Height (px)"
             style={{ display: 'block', marginBottom: '8px' }}
@@ -109,7 +79,7 @@ export default function Area() {
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setWidth)}
+            onBlur={handlers.handleNumberChange(setWidth)}
             value={width}
             label="Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
@@ -119,7 +89,7 @@ export default function Area() {
             control={
               <Switch
                 checked={isDashed}
-                onChange={handleBoolean(setIsDashed)}
+                onChange={handlers.handleBoolean(setIsDashed)}
                 name="dashed"
                 color="primary"
               />
@@ -130,7 +100,7 @@ export default function Area() {
           {isDashed && (
             <TextField
               type="number"
-              onChange={handleNumberChange(setDashWidth)}
+              onBlur={handlers.handleNumberChange(setDashWidth)}
               value={dashWidth}
               label="Dash Width (px)"
               style={{ display: 'block', marginBottom: '8px' }}
@@ -139,7 +109,7 @@ export default function Area() {
 
           <TextField
             defaultValue={JSON.stringify(json, null, 4)}
-            onChange={handleJsonChange(setJson)}
+            onBlur={handlers.handleJsonChange(setJson)}
             rowsMax={50}
             multiline
             fullWidth

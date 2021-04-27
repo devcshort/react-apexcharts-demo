@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TextField, Switch, FormControlLabel } from '@material-ui/core';
 
 import { Chart } from '../Chart/Chart';
+import * as handlers from '../../utils/changeHandlers';
 
 export default function Bar() {
   const [isHorizontal, setIsHorizontal] = useState(false);
@@ -31,31 +32,6 @@ export default function Bar() {
   const labels = json.categories;
   const series = json.series;
 
-  function handleNumberChange(setValue) {
-    return function changeHandler(e) {
-      const value = parseInt(e.target.value);
-
-      if (!isNaN(value)) {
-        setValue(e.target.value);
-      }
-    };
-  }
-
-  function handleJsonChange(setValue) {
-    return function changeHandler(e) {
-      try {
-        const newValue = JSON.parse(e.target.value);
-        setValue(newValue);
-      } catch (err) {}
-    };
-  }
-
-  function handleBoolean(toggleValue) {
-    return function changeHandler(e) {
-      toggleValue((prev) => !prev);
-    };
-  }
-
   return (
     <div>
       <div
@@ -66,24 +42,24 @@ export default function Bar() {
         <div style={{ flex: 1 }}>
           <TextField
             type="number"
-            onChange={handleNumberChange(setLineWidth)}
-            value={lineWidth}
+            onBlur={handlers.handleNumberChange(setLineWidth)}
+            defaultValue={lineWidth}
             label="Line Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setHeight)}
-            value={height}
+            onBlur={handlers.handleNumberChange(setHeight)}
+            defaultValue={height}
             label="Height (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
 
           <TextField
             type="number"
-            onChange={handleNumberChange(setWidth)}
-            value={width}
+            onBlur={handlers.handleNumberChange(setWidth)}
+            defaultValue={width}
             label="Width (px)"
             style={{ display: 'block', marginBottom: '8px' }}
           />
@@ -92,7 +68,7 @@ export default function Bar() {
             control={
               <Switch
                 checked={isHorizontal}
-                onChange={handleBoolean(setIsHorizontal)}
+                onChange={handlers.handleBoolean(setIsHorizontal)}
                 name="dashed"
                 color="primary"
               />
@@ -104,7 +80,7 @@ export default function Bar() {
             control={
               <Switch
                 checked={isDashed}
-                onChange={handleBoolean(setIsDashed)}
+                onChange={handlers.handleBoolean(setIsDashed)}
                 name="dashed"
                 color="primary"
               />
@@ -115,8 +91,8 @@ export default function Bar() {
           {isDashed && (
             <TextField
               type="number"
-              onChange={handleNumberChange(setDashWidth)}
-              value={dashWidth}
+              onBlur={handlers.handleNumberChange(setDashWidth)}
+              defaultValue={dashWidth}
               label="Dash Width (px)"
               style={{ display: 'block', marginBottom: '8px' }}
             />
@@ -124,7 +100,7 @@ export default function Bar() {
 
           <TextField
             defaultValue={JSON.stringify(json, null, 4)}
-            onChange={handleJsonChange(setJson)}
+            onBlur={handlers.handleJsonChange(setJson)}
             rowsMax={50}
             multiline
             fullWidth
