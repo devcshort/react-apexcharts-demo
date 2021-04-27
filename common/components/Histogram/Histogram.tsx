@@ -11,7 +11,7 @@ import {
 
 import { Chart, CurveTypes } from '../Chart/Chart';
 
-export default function Bar() {
+export default function Histogram() {
   const [curve, setCurve] = useState<CurveTypes>('straight');
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [isDashed, setIsDashed] = useState(false);
@@ -20,19 +20,18 @@ export default function Bar() {
   const [width, setWidth] = useState(600);
   const [height, setHeight] = useState(320);
   const [json, setJson] = useState({
-    categories: ['10:45am', '10:50am', '10:55am', '11:00am'],
+    categories: [
+      '10:45am',
+      '10:50am',
+      '10:55am',
+      '11:00am',
+      '11:05am',
+      '11:10am',
+    ],
     series: [
       {
-        name: 'Cherries',
-        data: [10, 40, 35, 50],
-      },
-      {
-        name: 'Not Cherries',
-        data: [20, 10, 32, 5],
-      },
-      {
-        name: 'Call Mark Cherries',
-        data: [5, 69, 22, 34],
+        name: 'FPM',
+        data: [10, 40, 35, 50, 22, 100],
       },
     ],
   });
@@ -210,18 +209,27 @@ export default function Bar() {
                 palette: 'palette1',
               },
               yaxis: {
+                tickAmount: 4,
+                labels: {
+                  style: {
+                    colors: '#fff',
+                  },
+                  offsetX: -5,
+                  offsetY: -5,
+                },
+              },
+              xaxis: {
+                categories: labels,
+                axisBorder: {
+                  show: false,
+                },
                 labels: {
                   style: {
                     colors: '#fff',
                   },
                 },
-              },
-              xaxis: {
-                categories: labels,
-                labels: {
-                  style: {
-                    colors: '#fff',
-                  },
+                axisTicks: {
+                  show: false,
                 },
               },
             }}

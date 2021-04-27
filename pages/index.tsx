@@ -11,6 +11,7 @@ import Line from 'common/components/Line/Line';
 import Area from 'common/components/Area/Area';
 import Bar from 'common/components/Bar/Bar';
 import Scatter from 'common/components/Scatter/Scatter';
+import Histogram from 'common/components/Histogram/Histogram';
 
 export default function Home() {
   const [chartType, setChartType] = useState<ChartTypes>('pie');
@@ -44,6 +45,7 @@ export default function Home() {
               <MenuItem value="line">Line</MenuItem>
               <MenuItem value="area">Area</MenuItem>
               <MenuItem value="bar">Bar</MenuItem>
+              <MenuItem value="histogram">Histogram</MenuItem>
               <MenuItem value="pie">Pie</MenuItem>
               <MenuItem value="donut">Donut</MenuItem>
               <MenuItem value="radialBar">Radial Bar</MenuItem>
@@ -68,6 +70,7 @@ export default function Home() {
         {chartType === 'area' && <Area />}
         {chartType === 'bar' && <Bar />}
         {chartType === 'scatter' && <Scatter />}
+        {chartType === 'histogram' && <Histogram />}
       </div>
     </div>
   );

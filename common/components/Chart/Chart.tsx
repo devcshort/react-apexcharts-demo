@@ -15,6 +15,7 @@ export type ChartTypes =
   | 'candlestick'
   | 'radar'
   | 'polarArea'
+  | 'histogram'
   | 'rangeBar';
 
 export type CurveTypes = 'straight' | 'smooth' | 'stepline';
