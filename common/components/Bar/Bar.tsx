@@ -41,12 +41,6 @@ export default function Bar() {
     };
   }
 
-  function handleChange(setValue) {
-    return function changeHandler(e) {
-      setValue(e.target.value);
-    };
-  }
-
   function handleJsonChange(setValue) {
     return function changeHandler(e) {
       try {

@@ -40,12 +40,6 @@ export default function Histogram() {
     };
   }
 
-  function handleChange(setValue) {
-    return function changeHandler(e) {
-      setValue(e.target.value);
-    };
-  }
-
   function handleJsonChange(setValue) {
     return function changeHandler(e) {
       try {
@@ -191,8 +185,6 @@ export default function Histogram() {
                   style: {
                     colors: '#fff',
                   },
-                  offsetX: -5,
-                  offsetY: -5,
                 },
               },
               xaxis: {
