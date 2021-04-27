@@ -13,7 +13,7 @@ export default function Radar() {
       { name: 'Series 2', data: [5.2, 15, 33, 45, 24] },
       { name: 'Series 3', data: [20, 69, 43, 12, 34] },
       { name: 'Series 4', data: [13.3, 24, 37, 22, 11] },
-      { name: 'Ser', data: [43.2, 27, 35, 14, 12] },
+      { name: 'Series 5', data: [43.2, 27, 35, 14, 12] },
     ],
     categories: [
       'Cherries',
