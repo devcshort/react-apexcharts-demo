@@ -1,18 +1,9 @@
 import { useState } from 'react';
-import {
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  TextField,
-  Switch,
-  FormControlLabel,
-} from '@material-ui/core';
+import { TextField, Switch, FormControlLabel } from '@material-ui/core';
 
-import { Chart, CurveTypes } from '../Chart/Chart';
+import { Chart } from '../Chart/Chart';
 
 export default function Bar() {
-  const [curve, setCurve] = useState<CurveTypes>('straight');
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [isDashed, setIsDashed] = useState(false);
   const [dashWidth, setDashWidth] = useState(15);
@@ -79,19 +70,6 @@ export default function Bar() {
         }}
       >
         <div style={{ flex: 1 }}>
-          <FormControl>
-            <InputLabel>Curve</InputLabel>
-            <Select
-              style={{ minWidth: 180, display: 'block', marginBottom: '8px' }}
-              value={curve}
-              onChange={handleChange(setCurve)}
-            >
-              <MenuItem value="straight">Straight</MenuItem>
-              <MenuItem value="smooth">Smooth</MenuItem>
-              <MenuItem value="stepline">Stepline</MenuItem>
-            </Select>
-          </FormControl>
-
           <TextField
             type="number"
             onChange={handleNumberChange(setLineWidth)}
@@ -180,7 +158,6 @@ export default function Bar() {
                 height: height,
               },
               stroke: {
-                curve: curve,
                 dashArray: isDashed ? [dashWidth] : [0],
                 width: lineWidth,
               },
