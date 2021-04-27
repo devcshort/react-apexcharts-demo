@@ -6,23 +6,26 @@ import * as handlers from '../../utils/changeHandlers';
 
 export default function Radar() {
   const [width, setWidth] = useState(600);
-  const [height, setHeight] = useState(320);
+  const [height, setHeight] = useState(420);
   const [json, setJson] = useState({
     series: [
-      {
-        type: 'boxPlot',
-        data: [
-          { x: 'Cherries', y: [15.3, 12, 42, 23, 12] },
-          { x: 'Not Cherries', y: [5.2, 15, 33, 45, 24] },
-          { x: 'Call Mark Cherries', y: [20, 69, 43, 12, 34] },
-          { x: 'Apples', y: [13.3, 24, 37, 22, 11] },
-          { x: 'Pears', y: [43.2, 27, 35, 14, 12] },
-        ],
-      },
+      { name: 'Series 1', data: [15.3, 12, 42, 23, 12] },
+      { name: 'Series 2', data: [5.2, 15, 33, 45, 24] },
+      { name: 'Series 3', data: [20, 69, 43, 12, 34] },
+      { name: 'Series 4', data: [13.3, 24, 37, 22, 11] },
+      { name: 'Ser', data: [43.2, 27, 35, 14, 12] },
+    ],
+    categories: [
+      'Cherries',
+      'Not Cherries',
+      'Call Mark Cherries',
+      'Apples',
+      'Pears',
     ],
   });
 
   const series = json.series;
+  const categories = json.categories;
 
   return (
     <div>
@@ -94,6 +97,7 @@ export default function Radar() {
                 },
               },
               xaxis: {
+                categories: categories,
                 labels: {
                   style: {
                     colors: '#fff',
